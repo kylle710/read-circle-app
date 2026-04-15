@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AuthContextProvider } from "../context/AuthContext";
+import { AuthContextProvider } from "../context/AuthContext.js";
  
 export default function Layout({ children }) {
   return <AuthContextProvider>{children}</AuthContextProvider>;
