@@ -9,7 +9,12 @@ import {
 } from "firebase/auth";
 import { auth } from "../lib/firebase";
  
-const AuthContext = createContext({ user: null });
+// Initializing with the shape of your object helps Next.js during build
+const AuthContext = createContext({
+  user: null,
+  gitHubSignIn: () => {},
+  firebaseSignOut: () => {},
+});
  
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -28,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
       setUser(currentUser);
     });
     return () => unsubscribe();
-  }, [user]);
+  }, []);
  
   return (
     <AuthContext.Provider value={{ user, gitHubSignIn, firebaseSignOut }}>
@@ -40,7 +45,7 @@ export const AuthContextProvider = ({ children }) => {
 export const useUserAuth = () => {
   const context = useContext(AuthContext);
   
-  if (context === undefined || context === null) {
+  if (!context) {
     return { user: null, gitHubSignIn: () => {}, firebaseSignOut: () => {} };
   }
   
