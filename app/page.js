@@ -1,37 +1,40 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-
-// Import the useUserAuth hook
+import { useState, useEffect } from "react";
 import { useUserAuth } from "../context/AuthContext";
- 
-// Use the useUserAuth hook to get the user object and the login and logout functions
-const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
- 
-// Sign in to Firebase with GitHub authentication
-await gitHubSignIn();
- 
-// Sign out of Firebase
-await firebaseSignOut();
- 
-// Display some of the user's information
-<p>
-  Welcome, {user.displayName} ({user.email})
-</p>;
 
-export default function Home() {
-  const { user, gitHubSignIn } = useUserAuth();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
+function HomeContent() {
+  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
   return (
-    <div>
-       {/* Your Home Page UI */}
+    <div className="flex flex-col items-center gap-4">
+      {user ? (
+        <>
+          <p>Welcome, {user.displayName}</p>
+          <button onClick={firebaseSignOut} className="bg-red-500 text-white p-2 rounded">Sign Out</button>
+        </>
+      ) : (
+        <button onClick={gitHubSignIn} className="bg-black text-white p-2 rounded">Sign in with GitHub</button>
+      )}
     </div>
+  );
+}
+
+export default function Home() {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="text-4xl font-bold mb-8">ReadCircle</h1>
+      
+      {/* This is the "Magic Gate": 
+          Vercel will see 'null' during build and pass.
+          The user's browser will see 'HomeContent' and render the login.
+      */}
+      {hasMounted ? <HomeContent /> : <p>Loading...</p>}
+    </main>
   );
 }
