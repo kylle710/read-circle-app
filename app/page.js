@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 // Import the useUserAuth hook
 import { useUserAuth } from "../context/AuthContext";
@@ -19,9 +20,18 @@ await firebaseSignOut();
 </p>;
 
 export default function Home() {
+  const { user, gitHubSignIn } = useUserAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-    </h1>
+    <div>
+       {/* Your Home Page UI */}
+    </div>
   );
 }
