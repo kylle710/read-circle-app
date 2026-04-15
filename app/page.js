@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // Import the useUserAuth hook
-import { useUserAuth } from "../contexts/AuthContext";
+import { useUserAuth } from "../context/AuthContext";
  
 // Use the useUserAuth hook to get the user object and the login and logout functions
 const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
