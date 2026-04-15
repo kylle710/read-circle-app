@@ -2,7 +2,7 @@
 import { useUserAuth } from "../../context/AuthContext";
 
 export default function AuthPage() {
-  const { gitHubSignIn, user } = useUserAuth();
+  const { firebaseSignOut, gitHubSignIn, user } = useUserAuth();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
