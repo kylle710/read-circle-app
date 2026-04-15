@@ -1,5 +1,5 @@
 "use client";
-import { useUserAuth } from "../context/AuthContext";
+import { useUserAuth } from "../../context/AuthContext.js";
 
 export default function DashboardPage() {
   const { user } = useUserAuth();

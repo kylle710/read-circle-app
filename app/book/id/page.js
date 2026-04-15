@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import { useUserAuth } from "../../../context/AuthContext"; // Note the three sets of dots!
+import { useUserAuth } from "../../../context/AuthContext";
 
 export default function BookDetailPage() {
   const { id } = useParams();
