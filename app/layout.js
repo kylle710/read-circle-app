@@ -11,10 +11,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" style={{ colorScheme: 'light' }}>
       <body className="bg-white min-h-screen text-gray-900" suppressHydrationWarning>
-        <AuthProvider>
+        {/* Change these two lines below */}
+        <AuthContextProvider> 
           <Navbar />
           <main>{children}</main>
-        </AuthProvider>
+        </AuthContextProvider>
       </body>
     </html>
   )
