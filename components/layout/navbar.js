@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { useAuth } from '../../hooks/useAuth'
-import { signOutUser } from '../../lib/auth'
+// Remove the import from ../../lib/auth
 
 export default function Navbar() {
-  const { user } = useAuth()
+  const { user, firebaseSignOut } = useAuth() 
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -26,7 +26,8 @@ export default function Navbar() {
                 Dashboard
               </Link>
               <button
-                onClick={signOutUser}
+                /* Use the function from context here */
+                onClick={() => firebaseSignOut()} 
                 className="text-gray-400 hover:text-red-500 transition-colors font-semibold"
               >
                 Sign out
