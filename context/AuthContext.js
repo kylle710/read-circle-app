@@ -8,8 +8,7 @@ import {
   GithubAuthProvider,
 } from "firebase/auth";
 import { auth } from "../lib/firebase";
- 
-// Initializing with the shape of your object helps Next.js during build
+
 const AuthContext = createContext({
   user: null,
   gitHubSignIn: () => {},
