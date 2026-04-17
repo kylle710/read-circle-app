@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { addReview } from '../../lib/firestore/reviews'
-import StarRating from './StarRating'
+import { StarRating} from '../review/StarRating'
 
 export default function ReviewForm({ bookId }) {
   const { user } = useAuth()

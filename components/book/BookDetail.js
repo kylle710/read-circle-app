@@ -2,7 +2,7 @@
 
 import { useAuth } from '../../hooks/useAuth'
 import { useReadingList } from '../../hooks/useReadingList'
-import { saveBook, removeBook } from '../lib/firestore/readingList'
+import { saveBook, removeBook } from '../../lib/firestore/readingList'
 import BookCover from './BookCover'
 import ReviewList from '../review/ReviewList'
 import ReviewForm from '../review/ReviewForm'
